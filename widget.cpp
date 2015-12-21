@@ -161,7 +161,8 @@ void Widget::initMenu()
     menuBar->addMenu(about);
     menuBar->addMenu(settings);
 
-
+    about->setStyleSheet("QMenu::item:selected {background-color: rgb(51, 153, 255);}");
+    settings->setStyleSheet("QMenu::item:selected {background-color: rgb(51, 153, 255);}");
 
     startWithWindowsAction = settings->addAction("Start with Windows");
 
