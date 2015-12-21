@@ -27,6 +27,7 @@ public slots:
     void initMenu();
     void addProgram();
     void setStartWithWindows(bool start);
+    void addToContextMenu(bool contextmenu);
 
 protected:
 
@@ -36,8 +37,11 @@ protected:
     bool alreadyExists(QString fileName);
 
       QAction * startWithWindowsAction;
+      QAction * addToContextMenuAction;
 
       void initAutostart();
+      void initContextMenu();
+
 private slots:
 
     void on_toolButton_clicked();
