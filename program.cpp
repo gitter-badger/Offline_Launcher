@@ -55,6 +55,12 @@ void Program::start()
 
 void Program::block()
 {
-    Firewall * fw = new Firewall(this);
+    Firewall fw(this);
+    fw.block();
+}
 
+void Program::unblock()
+{
+    Firewall fw(this);
+    fw.unblock();
 }

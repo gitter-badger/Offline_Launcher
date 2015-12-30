@@ -52,7 +52,9 @@ private slots:
 
     void on_startProgram_clicked();
 
-    void on_pushButton_clicked();
+    void on_unblockButton_clicked();
+
+    void on_blockButton_clicked();
 
 private:
     Ui::Widget *ui;

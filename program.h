@@ -23,6 +23,7 @@ public:
 
     void start();
     void block();
+    void unblock();
 
 protected:
     QString fileName;

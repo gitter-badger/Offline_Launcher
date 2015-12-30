@@ -272,7 +272,20 @@ void Widget::on_startProgram_clicked()
     }
 }
 
-void Widget::on_pushButton_clicked()
+void Widget::on_unblockButton_clicked()
+{
+    for(QListWidgetItem *item: ui->listWidget->selectedItems()){
+
+        QString program = item->text();
+        Program * prog = programs.getProgram(program);
+        if(prog != 0)
+        {
+            prog->unblock();
+        }
+    }
+}
+
+void Widget::on_blockButton_clicked()
 {
     for(QListWidgetItem *item: ui->listWidget->selectedItems()){
 
