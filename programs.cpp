@@ -1,4 +1,5 @@
 #include "programs.h"
+#include "config.h"
 
 Programs::Programs()
 {
@@ -40,11 +41,19 @@ void Programs::deleteProgram(int index)
 
 void Programs::load()
 {
-
+    QStringList list = Config::instance()->progList();
+    for(QString app : list){
+        addProgram(app);
+    }
 }
 
 void Programs::save()
 {
-
+    QStringList list;
+    for(Program *program: getPrograms()->toStdList())
+    {
+        list << program->getFileName();
+    }
+    Config::instance()->setProgList(list);
 }
 

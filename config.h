@@ -4,6 +4,7 @@
 #include <QtCore>
 #include <QObject>
 #include <QSettings>
+#include <QStringList>
 
 class Config : public QObject
 {
@@ -16,6 +17,10 @@ public:
     void setLastPath(QString fileName);
 
     QString lastPath();
+
+    void setProgList(QStringList progs);
+
+    QStringList progList();
 
 
 signals:

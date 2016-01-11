@@ -24,12 +24,11 @@ Widget::Widget(QWidget *parent) :
     programs.load();
     updateProgramList();
     initMenu();
-
-
 }
 
 Widget::~Widget()
 {
+    programs.save();
     delete ui;
 }
 
@@ -61,7 +60,6 @@ void Widget::updateProgramList()
 
         ui->listWidget->addItem(widgetItem);
     }
-
 }
 
 void Widget::closeEvent(QCloseEvent * event)
