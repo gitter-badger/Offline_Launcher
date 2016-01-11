@@ -216,7 +216,7 @@ void Widget::setStartWithWindows(bool start)
     QSettings registry("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     if (start)
     {
-        registry.setValue("Offline Launcher", "\"" + QCoreApplication::applicationFilePath().replace("/", "\\") + "\"");
+        registry.setValue("Offline Launcher", "\"" + QCoreApplication::applicationFilePath().replace("/", "\\") + "\" --autostart");
     }else {
         registry.remove("Offline Launcher");
     }
