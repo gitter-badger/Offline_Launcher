@@ -231,9 +231,9 @@ void Widget::addToContextMenu(bool contextmenu)
 
     if (contextmenu)
     {
-        QSettings registry("HKEY_CLASSES_ROOT\\.exe\\shell\\OfflineLauncher\\command", QSettings::NativeFormat);
+        QSettings registry("HKEY_CLASSES_ROOT\\exefile\\shell\\OfflineLauncher\\command", QSettings::NativeFormat);
 
-        registry.setValue("Default", "\"" + QCoreApplication::applicationFilePath().replace("/", "\\") + "\"");
+        registry.setValue("Default", "\"" + QCoreApplication::applicationFilePath().replace("/", "\\") + "\" \"%1\"");
 
         if(registry.status() == QSettings::AccessError){
             QMessageBox::warning(this, "Registry not Writable", "Please restart with admin rights to change this setting.");
@@ -244,7 +244,7 @@ void Widget::addToContextMenu(bool contextmenu)
         }
 
     }else {
-        QSettings registry("HKEY_CLASSES_ROOT\\.exe\\shell", QSettings::NativeFormat);
+        QSettings registry("HKEY_CLASSES_ROOT\\exefile\\shell", QSettings::NativeFormat);
         registry.setValue("OfflineLauncher\\command\\Default", "");
         registry.remove("OfflineLauncher");
 

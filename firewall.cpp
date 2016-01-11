@@ -21,7 +21,7 @@ void Firewall::block()
     QProcess::execute(command);
 
     command = QString("netsh advfirewall firewall add rule name=\"temp%1\""
-                              " dir=in action=block program=\"%2\" enable=yes").arg(name).arg(filename.replace("/", "\\"));
+                              " dir=out action=block program=\"%2\" enable=yes").arg(name).arg(filename.replace("/", "\\"));
 
     QProcess process;
     process.start(command);
@@ -46,7 +46,7 @@ void Firewall::unblock()
     QProcess::execute(command);
 
     command = QString("netsh advfirewall firewall add rule name=\"temp%1\""
-                              " dir=in action=allow program=\"%2\" enable=yes").arg(name).arg(filename.replace("/", "\\"));
+                              " dir=out action=allow program=\"%2\" enable=yes").arg(name).arg(filename.replace("/", "\\"));
     qDebug() << command;
     QProcess process;
     process.start(command);
