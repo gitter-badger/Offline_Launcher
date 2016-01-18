@@ -2,7 +2,9 @@
 #include <QApplication>
 #include <QStyleFactory>
 #include <QProcess>
+#include <QMessageBox>
 #include "systemtray.h"
+#include "firewall.h"
 //#include "vld.h"
 
 SystemTray *tray = nullptr;
@@ -23,11 +25,15 @@ void runAsNormal(QApplication &a){
     tray->show();
 }
 
-void runProgram(QApplication &a, QString program){
+void runProgram(QApplication &a, QString filename){
 
+    Program program(filename);
+    Firewall firewall(&program);
+    firewall.block();
     // firewall block
-    QProcess::execute(program);
-    // firewall unblock
+    QProcess::execute(filename);
+    // firewall unblock#
+    firewall.unblock();
 }
 
 int main(int argc, char *argv[])

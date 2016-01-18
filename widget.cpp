@@ -231,7 +231,7 @@ void Widget::addToContextMenu(bool contextmenu)
     {
         QSettings registry("HKEY_CLASSES_ROOT\\exefile\\shell\\OfflineLauncher\\command", QSettings::NativeFormat);
 
-        registry.setValue("Default", "\"" + QCoreApplication::applicationFilePath().replace("/", "\\") + "\" \"%1\"");
+        registry.setValue("Default", "\"" + QCoreApplication::applicationFilePath().replace("/", "\\") + "\" \" %1\"");
 
         if(registry.status() == QSettings::AccessError){
             QMessageBox::warning(this, "Registry not Writable", "Please restart with admin rights to change this setting.");
@@ -255,7 +255,6 @@ void Widget::addToContextMenu(bool contextmenu)
     }
 #endif
 }
-
 
 
 void Widget::on_startProgram_clicked()

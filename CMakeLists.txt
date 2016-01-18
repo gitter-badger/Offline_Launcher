@@ -29,7 +29,16 @@ add_executable(Offline_Launcher WIN32 main.cpp ${Sources} ${Headers} ${ResourceS
 
 # Use the Widgets module from Qt 5.
 if(WIN32)
-	target_link_libraries(Offline_Launcher Qt5::Core Qt5::Gui Qt5::Widgets Qt5::WinExtras)
+        #SET_TARGET_PROPERTIES(Offline_Launcher PROPERTIES LINK_FLAGS "/MANIFESTUAC:\"level='requireAdministrator' uiAccess='false'\" /SUBSYSTEM:WINDOWS")
+
+        target_link_libraries(Offline_Launcher Qt5::Core Qt5::Gui Qt5::Widgets Qt5::WinExtras)
 else()
 	target_link_libraries(Offline_Launcher Qt5::Core Qt5::Gui Qt5::Widgets)
+endif()
+
+if(MSVC)
+    add_custom_target(ADD_MANIFEST ALL
+            COMMAND ${CMAKE_COMMAND} -E chdir ${PROJECT_BINARY_DIR} mt -nologo -manifest ${PROJECT_SOURCE_DIR}/manifest.xml -outputresource:${PROJECT_BINARY_DIR}/Offline_Launcher.exe
+            DEPENDS ${application}
+    )
 endif()
