@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include "systemtray.h"
 #include "firewall.h"
+#include <QSharedMemory>
 //#include "vld.h"
 
 SystemTray *tray = nullptr;
@@ -40,6 +41,9 @@ int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
+
+    QSharedMemory shared("62d60669-bb94-4a94-88bb-b964890a7e04");
+
     QApplication::setStyle(QStyleFactory::create("Fusion"));
 
     if(argc == 2){
@@ -53,6 +57,15 @@ int main(int argc, char *argv[])
     }else if(argc == 3){
         // ...
     }else{
+        if( !shared.create( 512, QSharedMemory::ReadWrite) )
+        {
+          // For a GUI application, replace this by :
+          QMessageBox msgBox;
+          msgBox.setText( QObject::tr("Can't start more than one instance of the application.") );
+          msgBox.setIcon( QMessageBox::Critical );
+          msgBox.exec();
+          exit(0);
+        }
         runAsNormal(a);
     }
 
