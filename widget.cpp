@@ -13,6 +13,7 @@
 #include <QMenuBar>
 
 
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
@@ -24,6 +25,8 @@ Widget::Widget(QWidget *parent) :
     programs.load();
     updateProgramList();
     initMenu();
+
+    setAcceptDrops(true);
 }
 
 Widget::~Widget()
@@ -113,6 +116,29 @@ void Widget::on_toolButton_clicked()
     ui->progressBar->setVisible(false);
 }
 
+void Widget::dropEvent(QDropEvent* event) {
+    // Drop part
+    if (event && event->mimeData()) {
+        const QMimeData *mData = event->mimeData();
+        // Drop Images from FileManager into ImageList
+        if (mData->hasUrls()) {
+            QList<QUrl> urls = mData->urls();
+            QStringList files;
+            for (int x = 0; x < urls.count(); ++x) {
+                if (QFileInfo(urls.at(x).toLocalFile()).isDir()){
+                }
+                else
+                {
+                    QStringList fileNames;
+                    fileNames = QStringList(urls.at(x).toLocalFile());
+
+
+                }
+            }
+        }
+    }
+}
+
 void Widget::keyPressEvent(QKeyEvent * event)
 {
     if (event->key()== Qt::Key_Delete)
@@ -173,6 +199,7 @@ void Widget::initMenu()
     about->addAction("Check for Update");
     about->addAction("Donate");
     about->addAction("Help");
+    about->addAction("Submit Feedback");
 
     this->layout()->setMenuBar(menuBar);
     connect(startWithWindowsAction, SIGNAL(toggled(bool)), this, SLOT(setStartWithWindows(bool)));

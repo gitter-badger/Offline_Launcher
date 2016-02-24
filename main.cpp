@@ -2,6 +2,8 @@
 #include <QApplication>
 #include <QStyleFactory>
 #include <QProcess>
+#include <QDir>
+#include <QFileInfo>
 #include <QMessageBox>
 #include "systemtray.h"
 #include "firewall.h"
@@ -32,7 +34,13 @@ void runProgram(QApplication &a, QString filename){
     Firewall firewall(&program);
     firewall.block();
     // firewall block
-    QProcess::execute(filename);
+
+    QProcess *process = new QProcess();
+
+    QFileInfo fileInfo(filename);
+    QString dir = fileInfo.dir().absolutePath();
+    process->setWorkingDirectory(dir);
+    process->start(filename);
     // firewall unblock#
     firewall.unblock();
 }

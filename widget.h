@@ -30,6 +30,7 @@ public slots:
     void addToContextMenu(bool contextmenu);
 
 protected:
+    virtual void dropEvent(QDropEvent* event);
 
     virtual void closeEvent(QCloseEvent * event);
     virtual void keyPressEvent(QKeyEvent * event);
