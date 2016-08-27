@@ -57,9 +57,10 @@ int main(int argc, char *argv[])
     if(argc == 2){
         if(a.arguments().at(1) == "--autostart"){
             runAsAutostart(a);
+        }else if(a.arguments().at(1) == "--unlock"){
+            runAsNormal(a);
         }else{
             runProgram(a, a.arguments().at(1));
-
             return 0;
         }
     }else if(argc == 3){
