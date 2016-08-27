@@ -1,0 +1,57 @@
+language:
+ - cpp
+
+os:
+ - linux
+dist: trusty
+sudo: required
+compiler:
+     - gcc
+     - clang
+
+addons:
+ apt:
+  packages:
+   - build-essential
+   - cmake
+   - git
+   - libgtk2.0-dev
+   - pkg-config
+   - libavcodec-dev
+   - libavformat-dev
+   - libswscale-dev
+   - libtbb2
+   - libtbb-dev
+   - libjpeg-dev
+   - libpng-dev
+   - libtiff-dev
+   - libjasper-dev
+   - libdc1394-22-dev
+
+install:
+ - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
+         sudo apt-get update -qq
+      && sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev libqt5webkit5-dev
+      ;
+   else
+         brew tap homebrew/science
+      && brew update
+      && brew install cmake
+      && brew install qt5
+      ;
+   fi
+
+before_script:
+ - wget http://www.cmake.org/files/v3.6/cmake-3.6.0.tar.gz
+ - tar xf cmake-3.6.0.tar.gz
+ - cd cmake-3.6.0
+ - ./configure
+ - make
+ - sudo make install
+ - cd ..
+
+ - mkdir build
+ - cd build
+ - cmake ..
+script:
+ - make
