@@ -1,6 +1,8 @@
 # Offline_Launcher [![Build Status] [travis-image] ] [travis] [ ![Gitter] [gitter-image] ] [gitter]
 ================
 
+[![Join the chat at https://gitter.im/BlaCGaming-Offline_Launcher/Offline_Launcher](https://badges.gitter.im/BlaCGaming-Offline_Launcher/Offline_Launcher.svg)](https://gitter.im/BlaCGaming-Offline_Launcher/Offline_Launcher?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Program to take specific programs temporary offline.
 
 [travis-image]: https://travis-ci.org/BlaCGaming/Offline_Launcher.png?branch=master
